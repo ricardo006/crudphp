@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -34,40 +34,77 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
     <title>Editar Usuário</title>
     <!-- Inclua o Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            /* Cor de fundo */
+        }
+
+        .container {
+            margin-top: 50px;
+            /* Espaço superior */
+        }
+
+        .card {
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: #007bff;
+            /* Cor de fundo do cabeçalho */
+            color: white;
+            /* Cor do texto do cabeçalho */
+            border-radius: 12px 12px 0 0;
+            /* Adiciona borda arredondada apenas no topo */
+        }
+    </style>
 </head>
 
 <body>
 
-    <div class="container mt-5">
-        <h2>Editar Usuário</h2>
-        <form action="update.php" method="post">
-            <input type="hidden" name="id" value="<?php echo $id; ?>">
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="nome">Nome:</label>
-                    <input type="text" name="nome" class="form-control" value="<?php echo $nome; ?>" required>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="sobrenome">Sobrenome:</label>
-                    <input type="text" name="sobrenome" class="form-control" value="<?php echo $sobrenome; ?>" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="usuario">Usuário:</label>
-                <input type="text" name="usuario" class="form-control" value="<?php echo $usuario; ?>" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" name="email" class="form-control" value="<?php echo $email; ?>" required>
-            </div>
-            <div class="form-group">
-                <label for="data_nascimento">Data de Nascimento:</label>
-                <input type="date" name="data_nascimento" class="form-control" value="<?php echo $data_nascimento; ?>"
-                    required>
-            </div>
-            <button type="submit" class="btn btn-primary">Atualizar</button>
-        </form>
+    <div class="container">
+        <a href="read.php" class="btn btn-outline-secondary mb-3">Ir para Listagem</a>
 
+        <div class="card">
+            <div class="card-header">
+                <h6 class="card-title text-center mb-0">Editar Usuário</h6>
+            </div>
+            <div class="card-body">
+                <form action="update.php" method="post">
+                    <input type="hidden" name="id" value="<?php echo $id; ?>">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="nome">Nome:</label>
+                            <input type="text" name="nome" class="form-control" value="<?php echo $nome; ?>" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="sobrenome">Sobrenome:</label>
+                            <input type="text" name="sobrenome" class="form-control" value="<?php echo $sobrenome; ?>"
+                                required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="usuario">Usuário:</label>
+                        <input type="text" name="usuario" class="form-control" value="<?php echo $usuario; ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" name="email" class="form-control" value="<?php echo $email; ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="data_nascimento">Data de Nascimento:</label>
+                        <input type="date" name="data_nascimento" class="form-control"
+                            value="<?php echo $data_nascimento; ?>" required>
+                    </div>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-primary">
+                            Atualizar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
     <!-- Inclua o Bootstrap JS e jQuery -->
