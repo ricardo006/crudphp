@@ -15,11 +15,11 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
         $sobrenome = $row['sobrenome'];
         $data_nascimento = $row['data_nascimento'];
     } else {
-        echo "Usuário não encontrado.";
+        echo "Usuário não encontrado";
         exit();
     }
 } else {
-    echo "ID do usuário não fornecido.";
+    echo "ID do usuário não inserido.";
     exit();
 }
 
@@ -37,12 +37,10 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
     <style>
         body {
             background-color: #f8f9fa;
-            /* Cor de fundo */
         }
 
         .container {
             margin-top: 50px;
-            /* Espaço superior */
         }
 
         .card {
@@ -52,11 +50,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
 
         .card-header {
             background-color: #007bff;
-            /* Cor de fundo do cabeçalho */
             color: white;
-            /* Cor do texto do cabeçalho */
             border-radius: 12px 12px 0 0;
-            /* Adiciona borda arredondada apenas no topo */
         }
     </style>
 </head>
@@ -107,7 +102,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
         </div>
     </div>
 
-    <!-- Inclua o Bootstrap JS e jQuery -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>

@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($conn->query($sql) === TRUE) {
         echo "<script>
-                alert('Usuário editado com sucesso!');
+                alert('Usuário atualizado com sucesso!');
                 window.location.href = 'read.php'; // Redireciona para a página de listagem
               </script>";
     } else {

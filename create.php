@@ -9,7 +9,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sobrenome = $_POST['sobrenome'];
     $data_nascimento = $_POST['data_nascimento'];
 
-    // Note que é altamente recomendável usar funções de hash para armazenar senhas no banco de dados
     $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
     $sql = "INSERT INTO usuarios (usuario, email, senha, nome, sobrenome, data_nascimento) 

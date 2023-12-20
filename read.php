@@ -29,7 +29,7 @@ $result = $conn->query($sql);
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>#</th>
                             <th>Nome</th>
                             <th>Sobrenome</th>
                             <th>Data de Nascimento</th>
@@ -65,12 +65,10 @@ $result = $conn->query($sql);
         </div>
     </div>
 
-    <!-- Inclua o Bootstrap JS e jQuery -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-    <!-- Inclua os ícones do Bootstrap (FontAwesome) -->
     <script src="https://kit.fontawesome.com/SEU_CODIGO_DO_KIT.js" crossorigin="anonymous"></script>
 
     <script>

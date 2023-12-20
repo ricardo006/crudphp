@@ -5,20 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Criar Usuário</title>
-    <!-- Inclua o Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <style>
-        /* Estilos personalizados */
         .card {
             border-radius: 12px;
             box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
         }
 
-        /* Estilize os inputs para ter 6 em cada linha */
         .form-row {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
+            gap: 16px;
         }
     </style>
 </head>
@@ -75,7 +72,6 @@
         </div>
     </div>
 
-    <!-- Inclua o Bootstrap JS e jQuery -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
