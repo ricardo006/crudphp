@@ -1,5 +1,6 @@
 <?php
 include 'conexao.php';
+include 'views/header.php'; // Inclua o header.php
 
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -22,7 +23,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
     echo "ID do usuário não inserido.";
     exit();
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -57,7 +57,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
 </head>
 
 <body>
-
     <div class="container">
         <a href="read.php" class="btn btn-outline-secondary mb-3">Ir para Listagem</a>
 

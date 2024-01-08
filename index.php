@@ -1,66 +1,60 @@
+<?php include 'views/header.php'; ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Criar Usuário</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <style>
-        .card {
-            border-radius: 12px;
-            box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-        }
-    </style>
+    <link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="bg-light">
-
     <div class="container mt-5">
         <a href="read.php" class="btn btn-outline-secondary mb-3">Ir para Listagem</a>
 
         <div class="card">
-
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h6 class="card-title text-center mb-0">Criar Usuário</h6>
             </div>
             <div class="card-body">
-                <form action="create.php" method="post">
+                <form action="create.php" method="post" class="needs-validation" novalidate>
                     <div class="form-row">
-                        <div class="form-group col">
+                        <div class="form-group col-md-6">
                             <label for="nome">Nome:</label>
-                            <input type="text" name="nome" class="form-control" required>
+                            <input type="text" name="nome" class="form-control" required aria-label="Digite seu nome">
                         </div>
 
-                        <div class="form-group col">
+                        <div class="form-group col-md-6">
                             <label for="sobrenome">Sobrenome:</label>
-                            <input type="text" name="sobrenome" class="form-control" required>
+                            <input type="text" name="sobrenome" class="form-control" required
+                                aria-label="Digite seu sobrenome">
                         </div>
 
-                        <div class="form-group col">
+                        <div class="form-group col-md-6">
                             <label for="usuario">Usuário:</label>
-                            <input type="text" name="usuario" class="form-control" required>
+                            <input type="text" name="usuario" class="form-control" required
+                                aria-label="Digite seu usuário">
                         </div>
 
-                        <div class="form-group col">
+                        <div class="form-group col-md-6">
                             <label for="email">Email:</label>
-                            <input type="email" name="email" class="form-control" required>
+                            <input type="email" name="email" class="form-control" required
+                                aria-label="Digite seu email">
                         </div>
 
-                        <div class="form-group col">
+                        <div class="form-group col-md-6">
                             <label for="senha">Senha:</label>
-                            <input type="password" name="senha" class="form-control" required>
+                            <input type="password" name="senha" class="form-control" required
+                                aria-label="Digite sua senha">
                         </div>
 
-                        <div class="form-group col">
+                        <div class="form-group col-md-6">
                             <label for="data_nascimento">Data de Nascimento:</label>
-                            <input type="date" name="data_nascimento" class="form-control" required>
+                            <input type="date" name="data_nascimento" class="form-control" required
+                                aria-label="Digite sua data de nascimento">
                         </div>
                     </div>
 
