@@ -14,11 +14,11 @@
 <body class="bg-light">
     <div class="mt-10">
 
-        <div class="ml-3 mr-3 mt-2">
+        <div class="ml-4 mr-4 mt-2">
             <a href="read.php" class="btn btn-outline-secondary mb-3">Ir para Listagem</a>
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h6 class="card-title text-center mb-0">Criar Usuário</h6>
+                    <h6 class="card-title text-center mt-2">Criar Usuário</h6>
                 </div>
                 <div class="card-body">
                     <form action="create.php" method="post" class="needs-validation" novalidate>

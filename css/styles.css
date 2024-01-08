@@ -44,3 +44,15 @@ body {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 }
+
+/** Buttons */
+
+.btn-cadastrar {
+    background-color: #006d77;
+    color: #fff;
+}
+
+.btn-cadastrar:hover {
+    background-color: #006d77;
+    color: #fff;
+}

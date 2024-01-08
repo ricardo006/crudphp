@@ -37,13 +37,13 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
 </head>
 
 <body>
-    <div class="mr-3 ml-3 mt-3">
+    <div class="mr-4 ml-4 mt-5">
         <a href="read.php" class="btn btn-outline-secondary mb-3">Ir para Listagem</a>
 
         <div class="card">
             <div class="card-header">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h6 class="card-title text-center mb-0">Editar Usuário</h6>
+                    <h6 class="text-center mt-2">Editar Usuário</h6>
                 </div>
             </div>
             <div class="card-body">
