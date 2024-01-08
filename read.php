@@ -18,11 +18,11 @@ $result = $conn->query($sql);
 </head>
 
 <body>
-    <div class="container mt-5">
+    <div class="ml-3 mr-2 mt-5">
         <div class="card">
             <div class="card-header">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h6 class="card-title">Listagem de Usuários</h6>
+                    <h6 class="card-title mt-2">Listagem de Usuários</h6>
                     <a href="index.php" class="btn btn-success">Cadastrar Usuário</a>
                 </div>
             </div>

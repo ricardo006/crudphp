@@ -1,3 +1,12 @@
+body {
+    font-family: 'Poppins';
+}
+
+.container {
+    margin: 20px;
+    width: 100%;
+}
+
 .navbar {
     background-color: #6c55c9;
     height: 80px;
@@ -13,17 +22,25 @@
 
 .navbar-collapse ul li a {
     color: #d4bbfc;
+    font-family: 'Poppins';
 }
 
 /* style.css */
 .card {
     width: 100%;
-    border-radius: 12px;
+    border-radius: 20px;
     box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
+    border-top-left-radius: 40px;
+}
+
+.card-header {
+    height: 60px;
+    background-color: #6c55c9;
+    color: #d4bbfc;
+    vertical-align: middle;
 }
 
 .form-row {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
 }

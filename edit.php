@@ -32,60 +32,45 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Usuário</title>
-    <!-- Inclua o Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-
-        .container {
-            margin-top: 50px;
-        }
-
-        .card {
-            border-radius: 12px;
-            box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
-        }
-
-        .card-header {
-            background-color: #007bff;
-            color: white;
-            border-radius: 12px 12px 0 0;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
 
 <body>
-    <div class="container">
+    <div class="mr-3 ml-3 mt-3">
         <a href="read.php" class="btn btn-outline-secondary mb-3">Ir para Listagem</a>
 
         <div class="card">
             <div class="card-header">
-                <h6 class="card-title text-center mb-0">Editar Usuário</h6>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h6 class="card-title text-center mb-0">Editar Usuário</h6>
+                </div>
             </div>
             <div class="card-body">
                 <form action="update.php" method="post">
                     <input type="hidden" name="id" value="<?php echo $id; ?>">
                     <div class="form-row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                             <label for="nome">Nome:</label>
                             <input type="text" name="nome" class="form-control" value="<?php echo $nome; ?>" required>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                             <label for="sobrenome">Sobrenome:</label>
                             <input type="text" name="sobrenome" class="form-control" value="<?php echo $sobrenome; ?>"
                                 required>
                         </div>
+                        <div class="form-group col-md-12">
+                            <label for="usuario">Usuário:</label>
+                            <input type="text" name="usuario" class="form-control" value="<?php echo $usuario; ?>"
+                                required>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="email">Email:</label>
+                            <input type="email" name="email" class="form-control" value="<?php echo $email; ?>"
+                                required>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="usuario">Usuário:</label>
-                        <input type="text" name="usuario" class="form-control" value="<?php echo $usuario; ?>" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email:</label>
-                        <input type="email" name="email" class="form-control" value="<?php echo $email; ?>" required>
-                    </div>
+
                     <div class="form-group">
                         <label for="data_nascimento">Data de Nascimento:</label>
                         <input type="date" name="data_nascimento" class="form-control"
