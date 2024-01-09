@@ -38,8 +38,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
 
 <body>
     <div class="mr-4 ml-4 mt-5">
-        <a href="read.php" class="btn btn-outline-secondary mb-3">Ir para Listagem</a>
-
         <div class="card">
             <div class="card-header">
                 <div class="d-flex justify-content-between align-items-center">
@@ -47,6 +45,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
                 </div>
             </div>
             <div class="card-body">
+                <a href="read.php" class="btn btn-outline-secondary mb-3">Ir para Listagem</a>
+
                 <form action="update.php" method="post">
                     <input type="hidden" name="id" value="<?php echo $id; ?>">
                     <div class="form-row">
