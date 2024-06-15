@@ -1,5 +1,3 @@
-<?php include 'views/header.php'; ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -8,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Criar Usuário</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-<<<<<<< HEAD
     <link rel="stylesheet" href="styles.css">
     <style>
         .card {
@@ -22,9 +19,6 @@
             gap: 16px;
         }
     </style>
-=======
-    <link rel="stylesheet" href="../css/styles.css">
->>>>>>> 1e0b72fe0c59f719e7abfe714643c54d30009ef9
 </head>
 
 <body class="bg-light">

@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($conn->query($sql) === TRUE) {
         echo "<script>
                 alert('Vídeo cadastrado com sucesso!');
-                window.location.href = 'rtead.php'; // Redireciona para a página de listagem
+                window.location.href = 'read.php';
               </script>";
     } else {
         echo "Erro: " . $sql . "<br>" . $conn->error;

@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-=======
-<?php
-include 'conexao.php';
-include 'views/header.php'; // Inclua o header.php
-
-$sql = "SELECT * FROM usuarios";
-$result = $conn->query($sql);
-?>
-
->>>>>>> 1e0b72fe0c59f719e7abfe714643c54d30009ef9
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -16,7 +5,6 @@ $result = $conn->query($sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listagem de Vídeos</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-<<<<<<< HEAD
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
@@ -28,10 +16,6 @@ $result = $conn->query($sql);
             overflow-x: auto;
             white-space: nowrap;
         }
-=======
-    <link rel="stylesheet" href="../css/styles.css">
-</head>
->>>>>>> 1e0b72fe0c59f719e7abfe714643c54d30009ef9
 
         .card-horizontal {
             display: inline-block;
@@ -54,7 +38,6 @@ $result = $conn->query($sql);
     </style>
 </head>
 <body>
-<<<<<<< HEAD
     <nav class="navbar navbar-expand-lg">
         <a class="navbar-brand" href="#">RO</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -191,57 +174,6 @@ $result = $conn->query($sql);
                     </div>
                 </div>
             </div>
-=======
-    <div class="ml-4 mr-4 mt-5">
-        <div class="card">
-            <div class="card-header">
-                <div class="d-flex justify-content-between align-items-center">
-                    <h6 class="card-title mt-2">Listagem de Usuários</h6>
-                </div>
-            </div>
-
-            <div class="ml-auto mt-2 mb-2">
-                <a href="index.php" class="btn btn-cadastrar mr-2">Cadastrar Usuário</a>
-            </div>
-
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Nome</th>
-                        <th>Sobrenome</th>
-                        <th>Usuário</th>
-                        <th>Data de Nascimento</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<tr>";
-                            echo "<td>{$row['id']}</td>";
-                            echo "<td>{$row['nome']}</td>";
-                            echo "<td>{$row['nome']}</td>";
-                            echo "<td>{$row['sobrenome']}</td>";
-                            echo "<td>{$row['data_nascimento']}</td>";
-                            echo "<td>
-                                    <button class='btn btn-info mr-2' onclick='editarUsuario({$row['id']})'>
-                                        <i class='fas fa-edit'></i> Editar
-                                    </button>
-                                    <button class='btn btn-danger' onclick='excluirUsuario({$row['id']})'>
-                                        <i class='fas fa-trash-alt'></i> Excluir
-                                    </button>
-                                  </td>";
-                            echo "</tr>";
-                        }
-                    } else {
-                        echo "<tr><td colspan='5'>Nenhum usuário encontrado.</td></tr>";
-                    }
-                    ?>
-                </tbody>
-            </table>
->>>>>>> 1e0b72fe0c59f719e7abfe714643c54d30009ef9
         </div>
     </div>
 
