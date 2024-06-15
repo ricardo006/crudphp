@@ -1,5 +1,6 @@
 <?php
 include 'conexao.php';
+include 'views/header.php'; // Inclua o header.php
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
