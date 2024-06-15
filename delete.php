@@ -1,20 +1,18 @@
 <?php
 include 'conexao.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
+if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
-    $sql = "DELETE FROM usuarios WHERE id=$id";
+    $sql = "DELETE FROM videos WHERE id=$id";
 
     if ($conn->query($sql) === TRUE) {
         echo "<script>
-                alert('Registro excluído com sucesso!');
-                setTimeout(function() {
-                    window.location.href = 'read.php'; // Redireciona para a página de listagem
-                }, 2000);
+                alert('Vídeo excluído com sucesso!');
+                window.location.href = 'list.php';
               </script>";
     } else {
-        echo "Erro: " . $sql . "<br>" . $conn->error;
+        echo "Erro: " . $conn->error;
     }
 }
 
