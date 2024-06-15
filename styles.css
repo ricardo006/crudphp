@@ -1,5 +1,5 @@
 body {
-    /* background-image: linear-gradient(to right, #051E22, #15363b, #051E22); */
+    /* background-image: linear-gradient(to bottom, #051E22, #15363b, #051E22); */
     background-color: #051E22;
     font-family: 'Poppins', sans-serif;
     margin: 0;
@@ -47,6 +47,12 @@ h1,h2,h3,h4,h5,h6{
 iframe {
     border-radius: 20px;
     width: 100%;
+    height: 600px;
+}
+
+video.video-padrao {
+    border-radius: 20px;
+    width: 100%;
     height: 100%;
 }
 
@@ -56,7 +62,6 @@ iframe {
     cursor: pointer;
     color: #f0f8f0;
     border: 0 !important;
-    /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
 }
 
 .card-selected {
@@ -65,7 +70,7 @@ iframe {
     margin-top: 10px;
 }
 
-.card-list{
+.card-list {
     background-color: #004346;
     border: 1px solid #004346 !important;
     margin-top: 10px;
@@ -73,8 +78,13 @@ iframe {
 
 /** Card Items são os items da lista de videos vertical**/
 .card-items {
-    background-color: #004346 !important;
+    background-color: #004346 !important;   
     /* border: 1px solid #6FFFE9 !important; */
+}
+
+.card-items-selected {
+    background-color: #004346 !important; 
+    border: 1px solid #6FFFE9 !important;
 }
 
 .card .card-items:hover {
@@ -85,11 +95,13 @@ iframe {
 }
 
 .card-content-scroll {
-    padding: 20px;
+    padding: 0px;
+    margin-top: 10px;
+    cursor: pointer;
 }
 
 .navbar {
-    /* background-color: hsla(211, 53%, 11%, 0.329); */
+    background-color: hsla(211, 53%, 11%, 0.329);
     color: #f0f8f0;
 }
 
@@ -104,25 +116,116 @@ iframe {
     border-bottom: 2px solid #6FFFE9;
 }
 
+
+.txt-transition-video {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+}
+
+.txt-reproduzindo, .txt-title-video{
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.icon-sound {
+    color: #a9f1e7;
+    font-size: 16px;
+    margin-right: 5px;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
 .header-list {
     height: auto;
 }
 
 .card-horizontal {
-    background-color: #004346 !important;
-    border: 1px solid #055e63 !important;
+    display: inline-block;
+    background-color: #004346;
+    border: 1px solid #055e63;
+    max-width: 300px;
     color: #f0f8f0;
-    display: flex;
-    flex-direction: row;
     border-radius: 20px;
+    overflow: hidden; /* Garante que o conteúdo fique dentro das bordas arredondadas */
+    margin: 0 5px 0 0; /* Centraliza o card */
+}
+
+.card-content-scroll .card-horizontal:hover {
+    padding: 0px;
+    cursor: pointer;
+    background-color: #004346;
+    border: 1px solid #80d4d8;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
-img {
-    border-radius: 20px;
-    background-size: 100%;
-    border-radius: 20px;
+.card-horizontal .row {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap; /* Permite que as colunas quebrem em telas menores */
+    margin: 0; /* Remove margens padrão */
 }
+
+.card-horizontal .col-md-6 {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-horizontal .img-fluid {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* Mantém a proporção da imagem enquanto preenche o contêiner */
+    border-radius: 20px 0 0 20px; /* Mantém as bordas arredondadas no lado esquerdo */
+}
+
+.card-horizontal .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 15px;
+    background-color: inherit; /* Garante que a cor de fundo seja a mesma do card */
+    border-radius: 0 20px 20px 0; /* Mantém as bordas arredondadas no lado direito */
+}
+
+@media (max-width: 767.98px) {
+    .card-horizontal {
+        flex-direction: column;
+        max-width: 100%; /* Permite que o card ocupe toda a largura da tela */
+    }
+
+    .card-horizontal .img-fluid {
+        width: 100%;
+        height: auto;
+        border-radius: 20px 20px 0 0; /* Bordas arredondadas na parte superior */
+    }
+
+    .card-horizontal .card-body {
+        border-radius: 0 0 20px 20px; /* Bordas arredondadas na parte inferior */
+    }
+}
+
+img {
+    border-radius: 20px 0 0 20px;
+    background-size: 100%;
+} 
 
 .btn-cadastrados {
     background-color: #055e63;
@@ -146,7 +249,6 @@ img {
     border: none !important;
 }
 
-
 .btn-padrao {
     background-color: #055e63;
     margin-right: 10px;
@@ -168,4 +270,27 @@ img {
     color: #6FFFE9;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     font-weight: 500;
+}
+
+.btn-items-scroll {
+    border-radius: 10px;
+    color: #6FFFE9;
+    background-color: #004346;
+    margin-right: 6px;
+    margin-bottom: 12px;
+    border: 1px solid #004346 !important;
+    font-weight: 500;
+    opacity: 0.9;
+    background-color: rgba(0, 67, 70, 0.8);
+    transition: border-color 0.3s ease-in-out; 
+}
+
+.btn-items-scroll:hover {
+    border-radius: 12px;
+    color: #6FFFE9;
+    background-color: #055e63 !important;
+    border: 1px solid #6FFFE9 !important;
+    margin-right: 6px;
+    font-weight: 500;
+    transition: border-color 0.3s ease-in-out;
 }

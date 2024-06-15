@@ -17,13 +17,6 @@
             white-space: nowrap;
         }
 
-        .card-horizontal {
-            display: inline-block;
-            vertical-align: top;
-            max-width: 540px;
-            margin-right: 10px;
-        }
-
         .video-title {
             word-wrap: break-word;
         }
@@ -49,9 +42,7 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Início <span class="sr-only">(atual)</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">C</a>
-                </li>
+             
                 <li class="nav-item">
                     <a class="nav-link" href="#">Contato</a>
                 </li>
@@ -64,8 +55,15 @@
     </nav>
 
     <div class="container-custom mt-2">
-        <div class="card-content-scroll">
-            
+        <div class="scroll-categories">
+            <?php
+                $categories = ['Category 1', 'Category 2', 'Category 3', 'Category 4', 'Category 5'];
+                    foreach ($categories as $category) {
+                        echo '<button class="btn btn-primary btn-items-scroll">' . $category . '</button>';
+                    }
+            ?>   
+
+            <div class="card-content-scroll">
             <?php
                 include 'conexao.php';
                 $sql = "SELECT * FROM videos";
@@ -89,13 +87,12 @@
                         $thumbnail_url = $isYouTube ? "https://img.youtube.com/vi/{$video_id}/0.jpg" : "caminho_para_thumbnail_default.jpg";
                         ?>
                         
-                        <div class="card-horizontal" style="max-width: 350px;">
+                        <div class="card-horizontal">
                             <div class="row">
-                                <div class="col-md-6">
-                                    <img src="<?= $thumbnail_url ?>" class="img-fluid" alt="..." style="width: 100%;">
+                                <div class="col-md-6 col-sm-12">
+                                    <img src="<?= $thumbnail_url ?>" class="img-fluid" alt="..." style="width: auto;">
                                 </div>
-                                
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-sm-12">
                                     <div class="card-body">
                                         <h5 class="card-title" style="text-align: left;"><?= $row['titulo'] ?></h5>
                                         <p class="card-text" style="width: 100%; text-align: justify;">
@@ -117,10 +114,21 @@
             <div class="col-md-8 col-sm-12 mb-3 mt-1">
                 <div class="card card-selected">
                     <div class="card-header">
-                        <h6>Vídeo Selecionado</h6>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Vídeo Selecionado</h6>
+                            </div>
+                            <div class="col-md-12 text-right transition-video" style="display: none;">
+                                <div class="d-flex align-items-center justify-content-begin">
+                                    <i class="fas fa-volume-up icon-sound"></i>
+                                    <h6 class="ml-2 mt-2 txt-reproduzindo">&nbsp;Reproduzindo agora &nbsp;</h6>
+                                    <h6 class="mt-2 mr-2 txt-title-video">&nbsp;Texto à direita</>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
-                        <div id="video-container" style="height: 600px;"> 
+                        <div id="video-container"> 
                             <p>Selecione um vídeo na lista para exibi-lo aqui.</p>
                         </div>
                     </div>
@@ -133,13 +141,14 @@
                         <h6>Listagem de Vídeos</h6>
                         <div class="text-left">
                             <button type="button" class="btn btn-secondary btn-padrao" onclick="addPadraoVideos()">
-                            <i class="bi bi-list-nested"></i> Padrão
+                                <i class="bi bi-list-nested"></i> Padrão
                             </button>
                             <button type="button" class="btn btn-primary btn-cadastrados" onclick="mostrarVideosCadastrados()">
-                            <i class="bi bi-display"></i> Vídeos Cadastrados
+                                <i class="bi bi-display"></i> Vídeos Cadastrados
                             </button>
                         </div>
                     </div>
+                    
                     <div class="card-body" style="height: 585px; max-height: 700px; overflow-y: auto;" id="video-list">
                         <?php
                             $sql = "SELECT * FROM videos";
@@ -152,7 +161,7 @@
                                     $isYouTube = strpos($video_url, 'youtube') !== false || strpos($video_url, 'youtu.be') !== false;
                                     $thumbnail_url = $isYouTube ? "https://img.youtube.com/vi/{$video_id}/0.jpg" : "caminho_para_thumbnail_default.jpg";
                             ?>
-                                    <div class="card card-items mb-3" onclick="exibirVideo('<?= $video_url ?>', <?= $isYouTube ? 'true' : 'false' ?>)">
+                                    <div class="card card-items mb-2" onclick="exibirVideo('<?= $video_url ?>', <?= $isYouTube ? 'true' : 'false' ?>)">
                                         <div class="row g-0">
                                             <div class="col-md-4">
                                                 <img src="<?= $thumbnail_url ?>" class="rounded-start" alt="..." style="width: 100%; height: 100%;">
@@ -176,66 +185,115 @@
             </div>
         </div>
     </div>
-
+                            
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
 
     <script>
+        function addPadraoVideos() {
+            fetch('get_videos.php')
+            .then(response => response.json())
+            .then(videos => {
+                console.log(videos); // Verifica o conteúdo dos vídeos recebidos
+                const videoList = document.getElementById('video-list');
+                videoList.innerHTML = ''; // Limpa a lista de vídeos
+
+                videos.forEach(video => {
+                let videoCard = document.createElement('div');
+                videoCard.classList.add('card', 'card-items', 'mb-3');
+                videoCard.onclick = () => exibirVideo(video.url, false); // Passa false para indicar que não é um vídeo do YouTube
+
+                videoCard.innerHTML = `
+                    <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="${video.thumbnail}" class="rounded-start" alt="..." style="width: 100%; height: auto;">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                        <h6 class="card-title">${video.titulo}</h6>
+                        <p class="card-text">${video.descricao}</p>
+                        </div>
+                    </div>
+                    </div>
+                `;
+
+                videoList.appendChild(videoCard);
+                });
+            })
+            .catch(error => console.error('Erro ao carregar vídeos:', error));
+        }
+
         function exibirVideo(videoUrl, isYouTube) {
             let videoContainer = document.getElementById('video-container');
             let videoIframe;
 
             if (isYouTube) {
-                let videoId = videoUrl.includes('youtu.be') ? videoUrl.split('youtu.be/')[1] : videoUrl.split('v=')[1];
-                videoIframe = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+            let videoId = videoUrl.includes('youtu.be') ? videoUrl.split('youtu.be/')[1] : videoUrl.split('v=')[1];
+            videoIframe = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
             } else {
-                videoIframe = `<video width="100%" height="100%" controls><source src="${videoUrl}" type="video/mp4">Your browser does not support the video tag.</video>`;
+            videoIframe = `<video class="video-padrao" controls><source src="${videoUrl}" type="video/mp4">Your browser does not support the video tag.</video>`;
             }
 
             videoContainer.innerHTML = videoIframe;
-        }
 
-        function addPadraoVideos() {
-            const padraoVideos = [
-                { url: "https://www.youtube.com/watch?v=abc123", titulo: "Vídeo Padrão 1", descricao: "Descrição do vídeo padrão 1" },
-                { url: "https://www.youtube.com/watch?v=def456", titulo: "Vídeo Padrão 2", descricao: "Descrição do vídeo padrão 2" },
-                { url: "https://www.youtube.com/watch?v=def456", titulo: "Vídeo Padrão 3", descricao: "Descrição do vídeo padrão 3" },
-            ];
+            // Adiciona a classe 'selected' ao vídeo selecionado
+            const videoCards = document.getElementsByClassName('card-items-selected');
+            for (let i = 0; i < videoCards.length; i++) {
+            videoCards[i].classList.remove('selected');
+            videoCards[i].classList.add('card-items');
+            videoCards[i].classList.remove('card-items-selected');
+            }
+            const selectedVideoCard = event.target.closest('.card-items');
+            selectedVideoCard.classList.add('selected');
+            selectedVideoCard.classList.remove('card-items');
+            selectedVideoCard.classList.add('card-items-selected');
 
-            let videoList = document.getElementById('video-list');
-            videoList.innerHTML = ''; // Limpa a lista de vídeos
-
-            padraoVideos.forEach(video => {
-                let videoId = video.url.includes('youtu.be') ? video.url.split('youtu.be/')[1] : video.url.split('v=')[1];
-                let thumbnailUrl = `https://img.youtube.com/vi/${videoId}/0.jpg`;
-
-                let videoCard = document.createElement('div');
-                videoCard.classList.add('card', 'card-items', 'mb-3');
-                videoCard.onclick = () => exibirVideo(video.url, true);
-                
-                videoCard.innerHTML = `
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="${thumbnailUrl}" class="rounded-start" alt="..." style="width: 100%; height: auto;">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h6 class="card-title">${video.titulo}</h6>
-                                <p class="card-text">${video.descricao}</p>
-                            </div>
-                        </div>
-                    </div>
-                `;
-
-                videoList.appendChild(videoCard);
-            });
+            // Adicione o título na classe txt-title-video
+            const txtTitleVideo = document.querySelector('.txt-title-video');
+            txtTitleVideo.textContent = selectedVideoCard.querySelector('.card-title').textContent;
         }
 
         function mostrarVideosCadastrados() {
             location.reload(); // Recarrega a página para mostrar os vídeos cadastrados
         }
+
+        function exibirVideo(videoUrl, isYouTube) {
+            let videoContainer = document.getElementById('video-container');
+            let videoIframe;
+
+            if (isYouTube) {
+            let videoId = videoUrl.includes('youtu.be') ? videoUrl.split('youtu.be/')[1] : videoUrl.split('v=')[1];
+            videoIframe = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+            } else {
+            videoIframe = `<video class="video-padrao" controls><source src="${videoUrl}" type="video/mp4">Your browser does not support the video tag.</video>`;
+            }
+
+            videoContainer.innerHTML = videoIframe;
+
+            // Adiciona a classe 'selected' ao vídeo selecionado
+            const videoCards = document.getElementsByClassName('card-items-selected');
+            for (let i = 0; i < videoCards.length; i++) {
+            videoCards[i].classList.remove('selected');
+            videoCards[i].classList.add('card-items');
+            videoCards[i].classList.remove('card-items-selected');
+            }
+            const selectedVideoCard = event.target.closest('.card-items');
+            selectedVideoCard.classList.add('selected');
+            selectedVideoCard.classList.remove('card-items');
+            selectedVideoCard.classList.add('card-items-selected');
+
+            // Adicione o título na classe txt-title-video
+            const txtTitleVideo = document.querySelector('.txt-title-video');
+            txtTitleVideo.textContent = selectedVideoCard.querySelector('.card-title').textContent;
+
+            // Mostra a classe transition-video
+            const transitionVideo = document.querySelector('.transition-video');
+            transitionVideo.style.display = 'block';
+        }
+        
     </script>
 </body>
 </html>
