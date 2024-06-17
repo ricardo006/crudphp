@@ -55,13 +55,17 @@
     </nav>
 
     <div class="container-custom mt-2">
-        <div class="scroll-categories">
-            <?php
-                $categories = ['Category 1', 'Category 2', 'Category 3', 'Category 4', 'Category 5'];
+
+            <div class="card-content-scroll mt-2 mb-4">
+                <button class="btn btn-item1-scroll">Vídeos Padrão</button>
+                <button class="btn btn-item2-scroll">Vídeos Cadastrados</button>
+                <?php
+                    $categories = ['Ao Vivo', 'Música', 'Mix', 'Jogos', 'Notícias', 'E Sports', 'Filmes de Terror', 'Música Pop', 'Eletrônica', 'Assistidos', 'Novidades', 'Alan Walker'];
                     foreach ($categories as $category) {
-                        echo '<button class="btn btn-primary btn-items-scroll">' . $category . '</button>';
+                        echo '<button class="btn btn-items-scroll">' . $category . '</button>';
                     }
-            ?>   
+                ?>
+            </div>
 
             <div class="card-content-scroll">
             <?php
@@ -87,12 +91,12 @@
                         $thumbnail_url = $isYouTube ? "https://img.youtube.com/vi/{$video_id}/0.jpg" : "caminho_para_thumbnail_default.jpg";
                         ?>
                         
-                        <div class="card-horizontal">
+                        <!-- <div class="card-horizontal">
                             <div class="row">
-                                <div class="col-md-6 col-sm-12">
+                                <div class="col-md-12 col-sm-12">
                                     <img src="<?= $thumbnail_url ?>" class="img-fluid" alt="..." style="width: auto;">
                                 </div>
-                                <div class="col-md-6 col-sm-12">
+                                <div class="col-md-12 col-sm-12">
                                     <div class="card-body">
                                         <h5 class="card-title" style="text-align: left;"><?= $row['titulo'] ?></h5>
                                         <p class="card-text" style="width: 100%; text-align: justify;">
@@ -101,7 +105,17 @@
                                     </div>
                                 </div>
                             </div>
+                        </div> -->
+
+                        <div class="card-horizontal" style="width: 18rem; height: 350px;">
+                            <img src="<?= $thumbnail_url ?>" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title"><?= $row['titulo'] ?></h5>
+                                <p class="card-text"><?= $row['descricao'] ?> </p>
+                                <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                            </div>
                         </div>
+
                         <?php
                     }
                 } else {
@@ -111,7 +125,7 @@
         </div>
         
         <div class="row">
-            <div class="col-md-8 col-sm-12 mb-3 mt-1">
+            <div class="col-md-8 col-sm-12 mb-3 mt-4">
                 <div class="card card-selected">
                     <div class="card-header">
                         <div class="row">
@@ -121,7 +135,7 @@
                             <div class="col-md-12 text-right transition-video" style="display: none;">
                                 <div class="d-flex align-items-center justify-content-begin">
                                     <i class="fas fa-volume-up icon-sound"></i>
-                                    <h6 class="ml-2 mt-2 txt-reproduzindo">&nbsp;Reproduzindo agora &nbsp;</h6>
+                                    <h6 class="ml-2 mt-2 txt-reproduzindo">&nbsp;Reproduzindo agora:&nbsp;</h6>
                                     <h6 class="mt-2 mr-2 txt-title-video">&nbsp;Texto à direita</>
                                 </div>
                             </div>
@@ -135,7 +149,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4 col-sm-12 mt-2">
+            <div class="col-md-4 col-sm-12 mt-4">
                 <div class="card card-list">
                     <div class="card-header header-list sticky-top">
                         <h6>Listagem de Vídeos</h6>
@@ -149,7 +163,7 @@
                         </div>
                     </div>
                     
-                    <div class="card-body" style="height: 585px; max-height: 700px; overflow-y: auto;" id="video-list">
+                    <div class="card-body" style="height: 620px; max-height: 700px; overflow-y: auto;" id="video-list">
                         <?php
                             $sql = "SELECT * FROM videos";
                             $result = $conn->query($sql);
@@ -195,35 +209,35 @@
     <script>
         function addPadraoVideos() {
             fetch('get_videos.php')
-            .then(response => response.json())
-            .then(videos => {
-                console.log(videos); // Verifica o conteúdo dos vídeos recebidos
-                const videoList = document.getElementById('video-list');
-                videoList.innerHTML = ''; // Limpa a lista de vídeos
+                .then(response => response.json())
+                .then(videos => {
+                    console.log(videos); // Verifica o conteúdo dos vídeos recebidos
+                    const videoList = document.getElementById('video-list');
+                    videoList.innerHTML = ''; // Limpa a lista de vídeos
 
-                videos.forEach(video => {
-                let videoCard = document.createElement('div');
-                videoCard.classList.add('card', 'card-items', 'mb-3');
-                videoCard.onclick = () => exibirVideo(video.url, false); // Passa false para indicar que não é um vídeo do YouTube
+                    videos.forEach(video => {
+                        let videoCard = document.createElement('div');
+                        videoCard.classList.add('card', 'card-items', 'mb-3');
+                        videoCard.onclick = () => exibirVideo(video.url, false); // Passa false para indicar que não é um vídeo do YouTube
 
-                videoCard.innerHTML = `
-                    <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src="${video.thumbnail}" class="rounded-start" alt="..." style="width: 100%; height: auto;">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                        <h6 class="card-title">${video.titulo}</h6>
-                        <p class="card-text">${video.descricao}</p>
-                        </div>
-                    </div>
-                    </div>
-                `;
+                        videoCard.innerHTML = `
+                            <div class="row g-0">
+                                <div class="col-md-4 img-padrao">
+                                    <img src="${video.thumbnail}" class="rounded-start" alt="..." style="width: 100%;">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h6 class="card-title">${video.titulo}</h6>
+                                        <p class="card-text">${video.descricao}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
 
-                videoList.appendChild(videoCard);
-                });
-            })
-            .catch(error => console.error('Erro ao carregar vídeos:', error));
+                        videoList.appendChild(videoCard);
+                    });
+                })
+                .catch(error => console.error('Erro ao carregar vídeos:', error));
         }
 
         function exibirVideo(videoUrl, isYouTube) {
@@ -232,9 +246,9 @@
 
             if (isYouTube) {
             let videoId = videoUrl.includes('youtu.be') ? videoUrl.split('youtu.be/')[1] : videoUrl.split('v=')[1];
-            videoIframe = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+                videoIframe = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
             } else {
-            videoIframe = `<video class="video-padrao" controls><source src="${videoUrl}" type="video/mp4">Your browser does not support the video tag.</video>`;
+                videoIframe = `<video width="100%" height="100%" class="video-padrao" controls><source src="${videoUrl}" type="video/mp4">Your browser does not support the video tag.</video>`;
             }
 
             videoContainer.innerHTML = videoIframe;
@@ -242,9 +256,9 @@
             // Adiciona a classe 'selected' ao vídeo selecionado
             const videoCards = document.getElementsByClassName('card-items-selected');
             for (let i = 0; i < videoCards.length; i++) {
-            videoCards[i].classList.remove('selected');
-            videoCards[i].classList.add('card-items');
-            videoCards[i].classList.remove('card-items-selected');
+                videoCards[i].classList.remove('selected');
+                videoCards[i].classList.add('card-items');
+                videoCards[i].classList.remove('card-items-selected');
             }
             const selectedVideoCard = event.target.closest('.card-items');
             selectedVideoCard.classList.add('selected');
@@ -257,7 +271,7 @@
         }
 
         function mostrarVideosCadastrados() {
-            location.reload(); // Recarrega a página para mostrar os vídeos cadastrados
+            location.reload(); 
         }
 
         function exibirVideo(videoUrl, isYouTube) {
@@ -266,9 +280,9 @@
 
             if (isYouTube) {
             let videoId = videoUrl.includes('youtu.be') ? videoUrl.split('youtu.be/')[1] : videoUrl.split('v=')[1];
-            videoIframe = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+                videoIframe = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
             } else {
-            videoIframe = `<video class="video-padrao" controls><source src="${videoUrl}" type="video/mp4">Your browser does not support the video tag.</video>`;
+                videoIframe = `<video class="video-padrao" controls><source src="${videoUrl}" type="video/mp4">Your browser does not support the video tag.</video>`;
             }
 
             videoContainer.innerHTML = videoIframe;
@@ -276,9 +290,9 @@
             // Adiciona a classe 'selected' ao vídeo selecionado
             const videoCards = document.getElementsByClassName('card-items-selected');
             for (let i = 0; i < videoCards.length; i++) {
-            videoCards[i].classList.remove('selected');
-            videoCards[i].classList.add('card-items');
-            videoCards[i].classList.remove('card-items-selected');
+                videoCards[i].classList.remove('selected');
+                videoCards[i].classList.add('card-items');
+                videoCards[i].classList.remove('card-items-selected');
             }
             const selectedVideoCard = event.target.closest('.card-items');
             selectedVideoCard.classList.add('selected');

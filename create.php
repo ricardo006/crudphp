@@ -32,9 +32,9 @@ $conn->close();
 </head>
 <body>
     <div class="container mt-5">
-        <div class="card">
+        <div class="card card-cadastro">
             <div class="card-header">
-                <h5 class="card-title">Cadastrar Vídeo</h5>
+                <h5 class="mt-2">Cadastrar Vídeo</h5>
             </div>
             <div class="card-body">
                 <form method="post" action="">
@@ -51,7 +51,9 @@ $conn->close();
                         <input type="url" class="form-control" id="url" name="url" required>
                         <small class="form-text text-muted">Exemplo: https://www.youtube.com/watch?v=VIDEO_ID ou https://youtu.be/VIDEO_ID</small>
                     </div>
-                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-primary btn-form-cadastrar">Cadastrar</button>
+                    </div>
                 </form>
             </div>
         </div>

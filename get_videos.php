@@ -1,8 +1,9 @@
 <?php
 $directory = 'videos-padrao'; // Diretório onde estão os vídeos padrão
+$thumbnailPath = $directory . '/thumbnail.png'; // Caminho fixo da miniatura
 
 // Função para obter a lista de vídeos na pasta
-function getVideosFromDirectory($directory) {
+function getVideosFromDirectory($directory, $thumbnailPath) {
     $videos = [];
     $files = scandir($directory);
     
@@ -14,14 +15,9 @@ function getVideosFromDirectory($directory) {
             $videoData = [
                 'url' => $filePath, // URL do vídeo
                 'titulo' => pathinfo($file, PATHINFO_FILENAME), // Título do vídeo
-                'descricao' => 'Descrição do vídeo: ' . pathinfo($file, PATHINFO_FILENAME) // Descrição do vídeo (exemplo)
+                'descricao' => 'Descrição do vídeo: ' . pathinfo($file, PATHINFO_FILENAME), // Descrição do vídeo (exemplo)
+                'thumbnail' => $thumbnailPath // Caminho fixo da miniatura
             ];
-
-            // Gera a miniatura do vídeo usando ffmpegthumbnailer
-            $thumbnailPath = generateThumbnail($filePath);
-            if ($thumbnailPath) {
-                $videoData['thumbnail'] = $thumbnailPath; // Caminho da miniatura do vídeo
-            }
 
             $videos[] = $videoData;
         }
@@ -30,26 +26,8 @@ function getVideosFromDirectory($directory) {
     return $videos;
 }
 
-// Função para gerar a miniatura do vídeo
-function generateThumbnail($videoPath) {
-    $thumbnailPath = 'thumbnails/' . pathinfo($videoPath, PATHINFO_FILENAME) . '.jpg'; // Caminho da miniatura
-
-    // Comando para gerar a miniatura usando ffmpegthumbnailer
-    $command = "ffmpegthumbnailer -i $videoPath -o $thumbnailPath -s 0";
-
-    // Executa o comando
-    exec($command);
-
-    // Verifica se a miniatura foi gerada com sucesso
-    if (file_exists($thumbnailPath)) {
-        return $thumbnailPath;
-    }
-
-    return false;
-}
-
 // Obtém a lista de vídeos
-$videos = getVideosFromDirectory($directory);
+$videos = getVideosFromDirectory($directory, $thumbnailPath);
 
 // Define o cabeçalho como JSON
 header('Content-Type: application/json');
