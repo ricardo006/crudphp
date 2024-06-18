@@ -17,14 +17,11 @@
     <?php include 'nav.php'; ?>
 
     <div class="container-custom card-content-scroll-actions mt-2">
-        <div class="card-content-scroll-actions mt-2 mb-2">
-            <button class="btn btn-item1-scroll" onclick="addVideosPadraoHorizontal()"> <i class="bi bi-list-nested mr-2 "></i>Vídeos Padrão</button>
-            <button class="btn btn-item2-scroll" onclick="addVideosCadastradosHorizontal()"> <i class="bi bi-display mr-2 "></i> Vídeos Cadastrados</button>
-        </div>
-        
         <div class="card-content-scroll card-content-scroll-categories mt-2 mb-4">
            <?php
                 $categories = ['Ao Vivo', 'Música', 'Mix', 'Jogos', 'Notícias', 'E Sports', 'Filmes de Terror', 'Música Pop', 'Eletrônica', 'Assistidos', 'Novidades', 'Alan Walker'];
+                echo '<button class="btn btn-item1-scroll" onclick="addVideosPadraoHorizontal()"> <i class="bi bi-list-nested mr-2 "></i>Vídeos Padrão</button>';
+                echo ' <button class="btn btn-item2-scroll" onclick="addVideosCadastradosHorizontal()"> <i class="bi bi-display mr-2 "></i> Vídeos Cadastrados</button>';
                 foreach ($categories as $category) {
                     echo '<button class="btn btn-items-scroll">' . $category . '</button>';
                 }
@@ -39,20 +36,20 @@
 
             function getYouTubeVideoId($url) {
                 if (strpos($url, 'youtu.be') !== false) {
-                return substr(parse_url($url, PHP_URL_PATH), 1);
+                    return substr(parse_url($url, PHP_URL_PATH), 1);
                 } elseif (strpos($url, 'youtube.com') !== false) {
-                parse_str(parse_url($url, PHP_URL_QUERY), $params);
-                return $params['v'] ?? null;
+                    parse_str(parse_url($url, PHP_URL_QUERY), $params);
+                    return $params['v'] ?? null;
                 }
                 return null;
             }
 
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                $video_url = $row['url'];
-                $video_id = getYouTubeVideoId($video_url);
-                $isYouTube = strpos($video_url, 'youtube') !== false || strpos($video_url, 'youtu.be') !== false;
-                $thumbnail_url = $isYouTube ? "https://img.youtube.com/vi/{$video_id}/0.jpg" : "caminho_para_thumbnail_default.jpg";
+                    $video_url = $row['url'];
+                    $video_id = getYouTubeVideoId($video_url);
+                    $isYouTube = strpos($video_url, 'youtube') !== false || strpos($video_url, 'youtu.be') !== false;
+                    $thumbnail_url = $isYouTube ? "https://img.youtube.com/vi/{$video_id}/0.jpg" : "caminho_para_thumbnail_default.jpg";
                 ?>
                 
                 <div class="card-horizontal" onclick="exibirVideo('<?= $video_url ?>', <?= $isYouTube ? 'true' : 'false' ?>)" style="width: 18rem; height: 350px;">
@@ -120,7 +117,7 @@
                                     $video_url = $row['url'];
                                     $video_id = getYouTubeVideoId($video_url);
                                     $isYouTube = strpos($video_url, 'youtube') !== false || strpos($video_url, 'youtu.be') !== false;
-                                    $thumbnail_url = $isYouTube ? "https://img.youtube.com/vi/{$video_id}/0.jpg" : "caminho_para_thumbnail_default.jpg";
+                                    $thumbnail_url = $isYouTube ? "https://img.youtube.com/vi/{$video_id}/0.jpg" : "thumbnail.png";
                             ?>
                                     <div class="card card-items mb-2" onclick="exibirVideo('<?= $video_url ?>', <?= $isYouTube ? 'true' : 'false' ?>)">
                                         <div class="row g-0">

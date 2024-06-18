@@ -1,3 +1,4 @@
+// Adiciona os vídeos padrão ao carregar a página
 function addPadraoVideos() {
     fetch('get_videos.php')
     .then(response => response.json())
@@ -75,6 +76,7 @@ function mostrarVideosCadastrados() {
     location.reload(); 
 }
 
+// Vídeos padão sobre o tema E Sports no sistema em visualização nos cards horizontais
 function addVideosPadraoHorizontal() {
     fetch('get_videos.php?type=padrao') // Substitua 'get_videos.php?type=padrao' pelo endpoint correto
         .then(response => response.json())
@@ -106,13 +108,10 @@ function addVideosPadraoHorizontal() {
         .catch(error => console.error('Erro ao carregar vídeos padrão:', error));
 }
 
+// Vídeos cadastrados no sistema em visualização nos cards horizontais
 function addVideosCadastradosHorizontal() {
-    alert('Adicionando vídeos cadastrados na horizontal...');
     const videoListContainer = document.querySelector('.card-content-scroll-cards');
     videoListContainer.innerHTML = '';
 
     mostrarVideosCadastrados(); // Chama a função para carregar os vídeos cadastrados
-
-    const button = document.querySelector('button');
-    button.style.background = 'red'; // Change the background color of the button to red
 }
