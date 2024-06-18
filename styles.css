@@ -7,7 +7,7 @@ body {
 }
 
 input, textarea {
-    background-color: #0B132B;
+    background-color: transparent !important;
     color: #6FFFE9;
     border: 1px solid #6FFFE9;
     border-radius: 10px;
@@ -82,7 +82,7 @@ video.video-padrao {
 .card-items {
     background-color: #004346 !important;   
     text-wrap: normal;
-
+    cursor: pointer;
     /* border: 1px solid #6FFFE9 !important; */
 }
 
@@ -99,13 +99,32 @@ video.video-padrao {
 }
 
 .card-content-scroll {
+    overflow-x: auto;
+    white-space: nowrap;
     padding: 0px;
     margin-top: 10px;
     cursor: pointer;
 }
 
+.card-img-horizontal {
+    width: 120px;
+}
+
 .navbar {
     background-color: transparent !important;
+}
+
+.icon-menu {
+    color: #6FFFE9 !important;
+}
+.navbar-toggler {
+    color: #192f30 !important;
+    background-color: #022f31 !important;
+    border-radius: 10px;
+}
+
+span.navbar-toggler-icon {
+    color: #051E22 !important;
 }
 
 .navbar a {
@@ -156,6 +175,7 @@ video.video-padrao {
 
 .header-list {
     height: auto;
+    background: linear-gradient(45deg, rgba(13, 27, 42, 0), rgba(13, 27, 42, 0.5));
 }
 
 .card-horizontal {
@@ -164,11 +184,16 @@ video.video-padrao {
     background-color: #004346;
     border: 1px solid #055e63;
     max-width: 300px;
-    max-height: 340px;
+    height: 480px; 
     color: #f0f8f0;
     border-radius: 20px;
     overflow: hidden; /* Garante que o conteúdo fique dentro das bordas arredondadas */
     margin: 0 5px 10px 5px; /* Centraliza o card */
+}
+
+.cfooter {
+    background-color: #051E22 !important;
+    border-radius: 0px 0px 20px 20px !important;
 }
 
 .card-content-scroll .card-horizontal:hover {
@@ -229,9 +254,15 @@ video.video-padrao {
         border-radius: 0 0 20px 20px; /* Bordas arredondadas na parte inferior */
     }
 
+    img {
+        border-radius: 20px !important;
+        background-size: 100%;
+    }	
+
     .img-padrao {
         text-align: center;
     }
+    
     .img-padrao img {
         max-width: 80%;
     }
@@ -291,7 +322,7 @@ img {
     border-radius: 10px;
     font-size: 14px;
     color: #6FFFE9;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
     font-weight: 500;
 }
 
@@ -328,4 +359,9 @@ img {
     font-weight: 500;
     opacity: 0.9;
     transition: border-color 0.3s ease-in-out; 
+}
+
+.btn-voltar {
+    background-color: transparent !important;
+    color: #6FFFE9 !important;
 }
